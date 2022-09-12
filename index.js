@@ -9,8 +9,12 @@ connectWithDb();
 
 //Import ALL the Router
 const userRouter = require("./routes/userRoutes")
+const categoryRouter = require("./routes/categoryRoutes")
+const productRouter = require("./routes/productRoutes")
 
 app.use("/api/v1/user",userRouter);
+app.use("/api/v1/category",categoryRouter)
+app.use("/api/v1/products",productRouter)
 
 
 app.get("/",(req,res)=>{
