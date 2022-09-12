@@ -1,4 +1,5 @@
 const categoryModel=require("../model/categoryModel")
+const productModel=require("../model/productModel")
 
 exports.createCategory = async(req,res)=>{
     try {
@@ -32,8 +33,9 @@ exports.deleteCategory = async(req,res)=>{
         }
         const {categoryId}=req.params;
         //#TODO:Delete Products
+        const deleteProduct =await productModel.deleteMany({category:categoryId});
         const delCategory=await categoryModel.findByIdAndDelete(categoryId);
-        if(delCategory){
+        if(delCategory && deleteProduct){
             return res.status(200).json({
                 status:true,
                 message:"Category deleted successfully"
